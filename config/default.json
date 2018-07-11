@@ -1,0 +1,15 @@
+{
+  "name": "default",
+  "mongodb": {
+    "URI": "mongodb://localhost:27017/sampleapp",
+    "debug": true
+  },
+  "sequelize": {
+    "dialect": "mysql",
+    "datbase_name": "sampleapp",
+    "user": "root",
+    "password": "root",
+    "host": "localhost",
+    "port": 3306
+  }
+}
