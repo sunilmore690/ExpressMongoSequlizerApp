@@ -1,4 +1,4 @@
-let dao = require("../dao");
+let dao = require("../dao/mongo");
 let model_name = 'user';
 let default_methods = require("./default")(model_name);
 let authenticate = (req, res, next) => {

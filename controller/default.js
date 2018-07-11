@@ -1,4 +1,4 @@
-let dao = require("../dao");
+let dao = require("../dao/mongo");
 module.exports = function(model_name) {
   let create = function(req, res, next) {
     let body = req.body;
