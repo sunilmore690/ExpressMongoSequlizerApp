@@ -17,6 +17,7 @@ module.exports = function({
       freezeTableName: true,
       timestamps: false
     },
+    // sync: { force: true },
     pool: {
       max: 10,
       min: 1,
@@ -31,5 +32,6 @@ module.exports = function({
     .catch(err => {
       console.error("Unable to connect to the database:", err);
     });
+  sequelize.sync();
   return sequelize;
 };

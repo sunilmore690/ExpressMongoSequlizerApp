@@ -1,5 +1,35 @@
 let cbFunction = function() {};
 
+const crud = {
+  add(data, cb) {
+    if (typeof cb != "function") cb = cbFunction;
+    return this.Model.create(data);
+  },
+  get(params, project, cb) {
+    params = params || {};
+    if (typeof cb != "function") cb = cbFunction;
+    let query = this.Model.findOne({ where: params });
+    return query;
+  },
+  getAll(params, project, cb) {
+    params = params || {};
+    if (typeof cb != "function") cb = cbFunction;
+    let query = this.Model.findAll({ where: params });
+    return query;
+  },
+  destory(params, cb) {
+    params = params || {};
+    if (typeof cb != "function") cb = cbFunction;
+    let query = this.Model.destory({ where: params });
+    return query;
+  },
+  update(params, data, multi, cb) {
+    params = params || {};
+    multi = multi || false;
+    if (typeof cb != "function") cb = cbFunction;
+    return this.Model.update(data, { where: params });
+  }
+}
 class Dao {
   constructor({
     db: { dialect, datbase_name, user, password, host, port },
@@ -16,39 +46,10 @@ class Dao {
     });
     this.models = require("./models_init")(this.sequelize, modelsPath);
   }
-  add(model_name, data, cb) {
-    this.model = this.models[model_name];
-    console.log(this.model);
-    if (typeof cb != "function") cb = cbFunction;
-    return this.model.create(data);
+  model(model_name){
+    let Model = this.models[model_name]
+    return Object.assign({Model},crud)
   }
-  get(model_name, params, project, cb) {
-    this.model = this.models[model_name];
-    params = params || {};
-    if (typeof cb != "function") cb = cbFunction;
-    let query = this.model.findOne({ where: params });
-    return query;
-  }
-  getAll(model_name, params, project, cb) {
-    this.model = this.models[model_name];
-    params = params || {};
-    if (typeof cb != "function") cb = cbFunction;
-    let query = this.model.findAll({ where: params });
-    return query;
-  }
-  destory(model_name, params, cb) {
-    this.model = this.models[model_name];
-    params = params || {};
-    if (typeof cb != "function") cb = cbFunction;
-    let query = this.model.destory({ where: params });
-    return query;
-  }
-  update(model_name, params, data, multi, cb) {
-    this.model = this.models[model_name];
-    params = params || {};
-    multi = multi || false;
-    if (typeof cb != "function") cb = cbFunction;
-    return this.model.update(data, { where: params });
-  }
+ 
 }
 module.exports = Dao;

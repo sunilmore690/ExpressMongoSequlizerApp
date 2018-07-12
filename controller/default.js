@@ -1,8 +1,9 @@
-module.exports = function(dao, model_name) {
+module.exports = function(dao) {
+
   let create = function(req, res, next) {
     let body = req.body;
     dao
-      .add(model_name, body)
+      .add(body)
       .then(function(data) {
         res.json(data);
       })
@@ -20,7 +21,7 @@ module.exports = function(dao, model_name) {
     // }
     //promise approach
     dao
-      .getAll(model_name, req.query)
+      .getAll(req.query)
       .then(data => {
         res.json(data);
       })
@@ -30,7 +31,7 @@ module.exports = function(dao, model_name) {
   };
   let show = function(req, res, next) {
     dao
-      .get(model_name, { _id: req.params.id })
+      .get({ _id: req.params.id })
       .then(result => {
         res.json(result);
       })
@@ -40,7 +41,7 @@ module.exports = function(dao, model_name) {
   };
   let destroy = function(req, res, next) {
     dao
-      .destory(model_name, { _id: req.params.id })
+      .destory({ _id: req.params.id })
       .then(result => {
         res.json(result);
       })
@@ -52,7 +53,7 @@ module.exports = function(dao, model_name) {
     delete req.body._id;
     let multi = false;
     dao
-      .update(model_name, { _id: req.params.id }, req.body, multi)
+      .update({ _id: req.params.id }, req.body, multi)
       .then(result => {
         res.json(result);
       })
