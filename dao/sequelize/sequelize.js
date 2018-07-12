@@ -33,5 +33,6 @@ module.exports = function({
       console.error("Unable to connect to the database:", err);
     });
   sequelize.sync();
+
   return sequelize;
 };
