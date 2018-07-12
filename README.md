@@ -20,8 +20,6 @@
   $ npm install
   $ npm start
 
-
-
 ```
 
 # Test Api
