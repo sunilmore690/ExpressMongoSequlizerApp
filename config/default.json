@@ -8,7 +8,7 @@
     "dialect": "mysql",
     "datbase_name": "sampleapp",
     "user": "root",
-    "password": "root",
+    "password": null,
     "host": "localhost",
     "port": 3306
   }

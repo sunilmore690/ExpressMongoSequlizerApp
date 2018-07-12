@@ -1,7 +1,7 @@
 {
   "name": "samplenodeapp",
   "version": "0.0.0",
-  "private": true,
+  "private": false,
   "scripts": {
     "start": "node ./bin/www"
   },
@@ -14,6 +14,11 @@
     "jade": "~1.11.0",
     "mongoose": "^5.2.2",
     "morgan": "~1.9.0",
+    "mysql2": "^1.5.3",
+    "sequelize": "^4.38.0",
     "serve-favicon": "~2.4.5"
+  },
+  "engines": {
+    "node": ">= 8.11.1"
   }
 }

@@ -31,5 +31,5 @@ module.exports = function({
     .catch(err => {
       console.error("Unable to connect to the database:", err);
     });
-    return sequelize;
+  return sequelize;
 };

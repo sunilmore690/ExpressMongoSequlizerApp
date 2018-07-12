@@ -1,22 +1,17 @@
 var Sequelize = require("sequelize");
 module.exports = {
-    login: {
-      type: Sequelize.STRING
-    },
-    firstName: {
-      type: Sequelize.STRING
-    },
-    lastName: {
-      type: Sequelize.STRING
-    },
-    company_id: {
-      type: Sequelize.INTEGER
-    },
-    userId: {
-      type: Sequelize.INTEGER,
-      primaryKey: true
-    },
-    sig_mobile: {
-      type: Sequelize.STRING
-    }
+  email: {
+    type: Sequelize.STRING
+  },
+  name: {
+    type: Sequelize.STRING
+  },
+  password: {
+    type: Sequelize.STRING
+  },
+  id: {
+    type: Sequelize.INTEGER,
+    primaryKey: true,
+    autoIncrement: true
   }
+};

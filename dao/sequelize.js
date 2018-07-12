@@ -1,4 +1,4 @@
-const SeqalizeDao = require("./seqalize/index"),
+const SeqalizeDao = require("./sequelize/index"),
   config = require("config");
 path = require("path");
 

@@ -4,8 +4,8 @@ path = require("path");
 
 module.exports = new MongoDao({
   db: {
-    connectionString: config.db.URI,
-    debug: config.db.debug
+    connectionString: config.mongodb.URI,
+    debug: config.mongodb.debug
   },
   modelPath: path.resolve("./models/mongo/")
 });
