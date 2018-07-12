@@ -1,5 +1,4 @@
-
-module.exports = function(dao,model_name) {
+module.exports = function(dao, model_name) {
   let create = function(req, res, next) {
     let body = req.body;
     dao
@@ -12,7 +11,6 @@ module.exports = function(dao,model_name) {
       });
   };
   let index = async function(req, res, next) {
-
     //async await approach
     // try{
     //   let data = await dao.getAll(model_name,req.query);
@@ -21,33 +19,46 @@ module.exports = function(dao,model_name) {
     //   return next(e)
     // }
     //promise approach
-    dao.getAll(model_name, req.query).then((data)=> {
-      res.json(data)
-    }).catch((err)=>{
-      return next(err)
-    })
+    dao
+      .getAll(model_name, req.query)
+      .then(data => {
+        res.json(data);
+      })
+      .catch(err => {
+        return next(err);
+      });
   };
   let show = function(req, res, next) {
-    dao.get(model_name, { _id: req.params.id }, function(err, user) {
-      if (err) return next(err);
-      res.json(user);
-    });
+    dao
+      .get(model_name, { _id: req.params.id })
+      .then(result => {
+        res.json(result);
+      })
+      .catch(err => {
+        return next(err);
+      });
   };
   let destroy = function(req, res, next) {
-    dao.destory(dao, { _id: req.params.id }, function(err, result) {
-      if (err) return next(err);
-      res.json(result);
-    });
+    dao
+      .destory(model_name, { _id: req.params.id })
+      .then(result => {
+        res.json(result);
+      })
+      .catch(err => {
+        return next(err);
+      });
   };
   let update = function(req, res, next) {
     delete req.body._id;
-    dao.update(model_name, { _id: req.params.id }, req.body, function(
-      err,
-      user
-    ) {
-      if (err) return next(err);
-      res.json(user);
-    });
+    let multi = false;
+    dao
+      .update(model_name, { _id: req.params.id }, req.body, multi)
+      .then(result => {
+        res.json(result);
+      })
+      .catch(err => {
+        next(err);
+      });
   };
   return {
     create,
