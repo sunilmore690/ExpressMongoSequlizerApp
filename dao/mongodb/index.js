@@ -17,10 +17,11 @@ const crud = {
     let query = this.Model.findOne(params, project).lean();
     return query;
   },
-  getAll(params, project, cb) {
+  getAll(params, options, cb) {
     params = params || {};
     if (typeof cb != "function") cb = cbFunction;
-    return this.Model.find(params, project).lean();
+    options = options || {};
+    return this.Model.paginate(params, options);
   },
   destory(params, cb) {
     params = params || {};
@@ -58,7 +59,7 @@ class Dao {
   }
   model(model_name) {
     let Model = this.models[model_name];
-    return Object.assign({Model},crud)
+    return Object.assign({ Model }, crud);
   }
 }
 module.exports = Dao;
