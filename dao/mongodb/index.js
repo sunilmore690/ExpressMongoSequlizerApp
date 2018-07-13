@@ -59,6 +59,9 @@ class Dao {
   }
   model(model_name) {
     let Model = this.models[model_name];
+    if(!Model){
+      throw new Error(`Mongo Model ${model_name} not exist `)
+    }
     return Object.assign({ Model }, crud);
   }
 }
